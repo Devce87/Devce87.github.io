@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h1 id="h2">Binary Calculator</h1>
+<body>
+    <div id = "general">
+        <div id="searchBar"><input type= "text" id="number" placeholder="Insert Binary"></div>
+        <button onclick="getIntNumber()">Transform</button>
+        <div> Resulting Integer:</div>
+        <div id="result"><output type= "text" id="integer"></output> </div>
+
+    </div>
+
+    <script>
+
+        let getIntNumber = () => {
+
+            let array = Array.from(document.getElementById("number").value.replace(/ /g,"").replace(/,/g,""));
+
+            let size = array.length;
+            let total = 0;
+            let wrongInput = false;
+
+            array.forEach(element => {
+
+                if(element != 1 && element != 0){
+                    wrongInput = true;
+                    
+                } else if(element == 1 && size ==1){
+                    total+=1
+                } else if (element ==1 && size>1){
+                    total+= 2<<(size-- -2)
+                } else {
+                    size--;
+                }
+            });
+
+            if(wrongInput){
+                document.getElementById("integer").textContent = "Wrong input! Only 0 & 1 are allowed";   
+            }else {
+                document.getElementById("integer").textContent = total;
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
